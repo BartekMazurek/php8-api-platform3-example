@@ -1,0 +1,53 @@
+version: '3'
+
+services:
+
+    postgres:
+        container_name: promo_postgres
+        build:
+            context: .
+            dockerfile: ./docker/postgres/Dockerfile
+        ports:
+            - '5432:5432'
+        env_file:
+            - .env
+        networks:
+            promo-network:
+                ipv4_address: 172.20.0.2
+
+    nginx:
+        container_name: promo_nginx
+        build:
+            context: .
+            dockerfile: ./docker/nginx/Dockerfile
+        ports:
+            - '80:80'
+        volumes:
+            - .:/var/www/app
+        depends_on:
+            - php
+        networks:
+            promo-network:
+                ipv4_address: 172.20.0.3
+
+    php:
+        container_name: promo_php
+        build:
+            context: .
+            dockerfile: ./docker/php/Dockerfile
+        volumes:
+            - .:/var/www/app
+        env_file:
+            - .env
+        depends_on:
+            - postgres
+        networks:
+            promo-network:
+                ipv4_address: 172.20.0.4
+
+networks:
+    promo-network:
+        driver: bridge
+        ipam:
+            config:
+                -   subnet: 172.20.0.0/24
