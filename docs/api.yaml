@@ -1,0 +1,135 @@
+openapi: 3.0.3
+info:
+    title: PromoCode API
+    version: 1.0.0
+paths:
+    /api/codes:
+        post:
+            tags:
+                - Promo code
+            summary: Create new promo code
+            description: Create new promo code
+            requestBody:
+                description: Create new promo code
+                content:
+                    application/json:
+                        schema:
+                            $ref: '#/components/schemas/PromoCodeCreateInput'
+                required: true
+            responses:
+                '201':
+                    description: Created
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/PromoCodeOutput'
+                '422':
+                    description: Validation exception
+
+        put:
+            tags:
+                - Promo code
+            summary: Update promo code
+            description: Update promo code
+            requestBody:
+                description: Update promo code
+                content:
+                    application/json:
+                        schema:
+                            $ref: '#/components/schemas/PromoCodeUpdateInput'
+                required: true
+            responses:
+                '200':
+                    description: OK
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/PromoCodeOutput'
+                '422':
+                    description: Validation exception
+
+    /api/codes/{code}:
+        get:
+            tags:
+                - Promo code
+            summary: Get promo code by specified identifier
+            description: Get promo code by specified identifier
+            parameters:
+                -   name: code
+                    in: path
+                    description: Promo code identifier
+                    required: true
+                    schema:
+                        type: string
+                        example: code1
+            responses:
+                '200':
+                    description: Ok
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/PromoCodeOutput'
+
+        delete:
+            tags:
+                - Promo code
+            summary: Delete promo code by specified identifier
+            description: Delete promo code by specified identifier
+            parameters:
+                -   name: code
+                    in: path
+                    description: Promo code identifier
+                    required: true
+                    schema:
+                        type: string
+                        example: code1
+            responses:
+                '204':
+                    description: No content
+
+components:
+    schemas:
+
+        PromoCodeCreateInput:
+            properties:
+                name:
+                    type: string
+                    example: Promo code name
+                code:
+                    type: string
+                    example: code1
+                availableViews:
+                    type: integer
+                    example: 10
+                isActive:
+                    type: boolean
+                    example: true
+
+        PromoCodeUpdateInput:
+            properties:
+                code:
+                    type: string
+                    example: code1
+                name:
+                    type: string
+                    example: Promo code name
+
+                isActive:
+                    type: boolean
+                    example: true
+
+        PromoCodeOutput:
+            properties:
+                name:
+                    type: string
+                    example: Promo code name
+                code:
+                    type: string
+                    example: code1
+                availableViews:
+                    type: integer
+                    example: 10
+                isActive:
+                    type: boolean
+                    example: true
+
