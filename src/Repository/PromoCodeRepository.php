@@ -30,8 +30,6 @@ class PromoCodeRepository extends ServiceEntityRepository
         return $this->createQueryBuilder(alias: 'pc')
             ->andWhere('pc.code = :code')
             ->setParameter(key: 'code', value: $code)
-            ->setCacheable(cacheable: true)
-            ->setLifetime(lifetime: 180)
             ->getQuery()
             ->getOneOrNullResult();
     }

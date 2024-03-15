@@ -27,7 +27,7 @@ class PromoCodeCreateDataProcessor implements ProcessorInterface
     ) {
 
         if (!$data instanceof PromoCodeCreateInput) {
-            throw new \InvalidArgumentException('Wrong input data');
+            throw new \InvalidArgumentException(message: 'Wrong input data');
         }
 
         $this->promoCodeCreateService->createPromoCode(input: $data);

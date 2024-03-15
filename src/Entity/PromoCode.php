@@ -11,6 +11,8 @@ use Doctrine\ORM\Mapping as ORM;
 #[ORM\Table(name: "`promo_codes`", schema: "marketing")]
 class PromoCode
 {
+    private const ACTIVE = 1;
+
     #[ORM\Id]
     #[ORM\GeneratedValue(strategy: 'SEQUENCE')]
     #[ORM\Column]
@@ -71,6 +73,16 @@ class PromoCode
     public function setActive(int $active): void
     {
         $this->active = $active;
+    }
+
+    public function isActive(): bool
+    {
+        return $this->active === self::ACTIVE;
+    }
+
+    public function isAvailableView(): bool
+    {
+        return $this->availableViews > 0;
     }
 
     public static function createFromData(

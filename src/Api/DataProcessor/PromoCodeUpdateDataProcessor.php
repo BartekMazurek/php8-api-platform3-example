@@ -26,7 +26,7 @@ class PromoCodeUpdateDataProcessor implements ProcessorInterface
         array $context = []
     ) {
         if (!$data instanceof PromoCodeUpdateInput) {
-            throw new \InvalidArgumentException('Wrong input data');
+            throw new \InvalidArgumentException(message: 'Wrong input data');
         }
 
         $this->promoCodeUpdateService->updatePromoCode(input: $data);
