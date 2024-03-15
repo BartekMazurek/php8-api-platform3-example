@@ -11,6 +11,8 @@
 > docker exec promo_php bin/console --no-interaction doctrine:migrations:migrate
 
 ### 4 - Run functional tests to determine if application is running (postman directory)
+> **Make sure that proper nginx container IP is set as host in postman environment file (currently 172.20.0.3)**
+
 > docker exec promo_php sh -c 'cd /var/www/app/postman && newman run collection.json -e environment.json'
 
 ![Tests](1.png)
