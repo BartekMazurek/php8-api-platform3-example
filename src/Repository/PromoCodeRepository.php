@@ -25,6 +25,12 @@ class PromoCodeRepository extends ServiceEntityRepository
         $this->entityManager->flush();
     }
 
+    public function remove(PromoCode $promoCode): void
+    {
+        $this->entityManager->remove(object: $promoCode);
+        $this->entityManager->flush();
+    }
+
     public function getPromoCodeBySpecifiedCode(string $code): ?PromoCode
     {
         return $this->createQueryBuilder(alias: 'pc')
