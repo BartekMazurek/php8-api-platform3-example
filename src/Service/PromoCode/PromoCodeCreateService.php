@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Service\PromoCode;
 
+use App\Api\Dto\PromoCode\AbstractPromoCodeOutput;
 use App\Api\Dto\PromoCode\PromoCodeCreateInput;
 use App\Api\Dto\PromoCode\PromoCodeCreateOutput;
 use App\Entity\PromoCode;
@@ -55,7 +56,7 @@ class PromoCodeCreateService
         );
     }
 
-    public function getOutput(): PromoCodeCreateOutput
+    public function getOutput(): AbstractPromoCodeOutput
     {
         return PromoCodeCreateOutput::createFromData(
             name: $this->input->name,
