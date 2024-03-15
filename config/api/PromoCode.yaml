@@ -1,0 +1,31 @@
+resources:
+
+    App\Api\Dto\PromoCode\PromoCodeReadOutput:
+        operations:
+            ApiPlatform\Metadata\Get:
+                uriTemplate: /codes/{id}
+                identifier: true
+                output: App\Api\Dto\PromoCode\PromoCodeReadOutput
+                provider: App\Api\DataProvider\PromoCodeReadDataProvider
+
+    App\Api\Dto\PromoCode\PromoCodeCreateInput:
+        operations:
+            ApiPlatform\Metadata\Post:
+                uriTemplate: /codes
+                output: App\Api\Dto\PromoCode\PromoCodeCreateOutput
+                processor: App\Api\DataProcessor\PromoCodeCreateDataProcessor
+
+    App\Api\Dto\PromoCode\PromoCodeUpdateInput:
+        operations:
+            ApiPlatform\Metadata\Put:
+                uriTemplate: /codes
+                output: App\Api\Dto\PromoCode\PromoCodeUpdateOutput
+                processor: App\Api\DataProcessor\PromoCodeUpdateDataProcessor
+
+    App\Api\Dto\PromoCode\PromoCodeDeleteOutput:
+        operations:
+            ApiPlatform\Metadata\Delete:
+                uriTemplate: /codes/{id}
+                identifier: true
+                output: App\Api\Dto\PromoCode\PromoCodeDeleteOutput
+                provider: App\Api\DataProvider\PromoCodeDeleteDataProvider
