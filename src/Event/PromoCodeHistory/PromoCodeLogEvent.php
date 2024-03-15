@@ -15,26 +15,26 @@ class PromoCodeLogEvent extends Event
     public const DELETE = 'delete';
 
     private string $operation;
-    private ?string $value;
+    private array $data;
 
     public function getOperation(): string
     {
         return $this->operation;
     }
 
-    public function getValue(): ?string
+    public function getData(): array
     {
-        return $this->value;
+        return $this->data;
     }
 
     public static function createFromData(
         string $operation,
-        ?string $value
+        array $data
     ): PromoCodeLogEvent {
 
         $event = new self();
         $event->operation = $operation;
-        $event->value = $value;
+        $event->data = $data;
 
         return $event;
     }

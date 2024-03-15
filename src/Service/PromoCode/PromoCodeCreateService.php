@@ -10,23 +10,19 @@ use App\Entity\PromoCode;
 use App\Event\PromoCodeHistory\PromoCodeLogEvent;
 use App\Repository\PromoCodeRepository;
 use Psr\EventDispatcher\EventDispatcherInterface;
-use Symfony\Component\Serializer\SerializerInterface;
 
 class PromoCodeCreateService
 {
     private PromoCodeCreateInput $input;
     private PromoCodeRepository $promoCodeRepository;
     private EventDispatcherInterface $eventDispatcher;
-    private SerializerInterface $serializer;
 
     public function __construct(
         PromoCodeRepository $promoCodeRepository,
-        EventDispatcherInterface $eventDispatcher,
-        SerializerInterface $serializer
+        EventDispatcherInterface $eventDispatcher
     ) {
         $this->promoCodeRepository = $promoCodeRepository;
         $this->eventDispatcher = $eventDispatcher;
-        $this->serializer = $serializer;
     }
 
     public function createPromoCode(PromoCodeCreateInput $input): void
@@ -54,7 +50,7 @@ class PromoCodeCreateService
         $this->eventDispatcher->dispatch(
             PromoCodeLogEvent::createFromData(
                 operation: PromoCodeLogEvent::CREATE,
-                value: $this->serializer->serialize(data: $promoCode, format: PromoCodeLogEvent::JSON)
+                data: [$promoCode]
             )
         );
     }

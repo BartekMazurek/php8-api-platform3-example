@@ -20,9 +20,7 @@ final class Version20240315130837 extends AbstractMigration
         $this->addSql(
             'CREATE TABLE "marketing"."promo_codes_history" (
                                 id INT NOT NULL DEFAULT nextval(\'marketing.promo_codes_history_id_seq\'::regclass), 
-                                value JSON DEFAULT NULL, 
-                                operation VARCHAR(6) NOT NULL, 
-                                created TIMESTAMP(0) WITHOUT TIME ZONE NOT NULL DEFAULT now(), 
+                                value JSON NOT NULL, 
                                 PRIMARY KEY(id))'
         );
     }
