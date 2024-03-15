@@ -1,0 +1,182 @@
+{
+	"info": {
+		"_postman_id": "4a2321e3-1274-4458-99dc-f77ab71cca71",
+		"name": "PromoCode api",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "26558289"
+	},
+	"item": [
+		{
+			"name": "1. Create promo code",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status response is 201 Created\", function () {",
+							"    pm.response.to.have.status(201);",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "content-type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"name\": \"Promo code 1 name\",\n    \"code\": \"{{testCode}}\",\n    \"availableViews\": 10,\n    \"isActive\": false\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{host}}/api/codes",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"api",
+						"codes"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "2. Update promo code",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status response is 200 Ok\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "content-type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"code\": \"{{testCode}}\",\n    \"name\": \"New Promo code 1 name\",\n    \"isActive\": true\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{host}}/api/codes",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"api",
+						"codes"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "3. Get promo code",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status response is 200 Ok\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "content-type",
+						"value": "application-json",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{host}}/api/codes/{{testCode}}",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"api",
+						"codes",
+						"{{testCode}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "4. Delete promo code",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status response is 204 No content\", function () {",
+							"    pm.response.to.have.status(204);",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "content-type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{host}}/api/codes/{{testCode}}",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"api",
+						"codes",
+						"{{testCode}}"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
